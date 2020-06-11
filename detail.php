@@ -37,7 +37,7 @@
             "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure.php",
             "pending" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_pending.php"
         );
-        $preference->auto_return = "approved";  
+        $preference->auto_return = "all";  
         $preference->payment_methods = array(
             "excluded_payment_methods" => array(
               array("id" => "amex")
