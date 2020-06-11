@@ -33,9 +33,9 @@
         $preference->external_reference = "info@siguefit.com";
         $preference->notification_url = "https://api.siguefit.com/mptest";
         $preference->back_urls = array(
-            "success" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_ok",
-            "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure",
-            "pending" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_pending"
+            "success" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_ok.php",
+            "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure.php",
+            "pending" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_pending.php"
         );
         $preference->auto_return = "approved";  
         $preference->payment_methods = array(
@@ -82,12 +82,14 @@
 
         console_log("IMG del producto: ".$item->picture_url);
 
-
-
         $preference->items = array($item);
         $preference->payer = $payer;
+        
+        console_log("Back url: ".$preference->back_urls);
 
         $preference->save();
+
+        console_log("Back url despues del save: ".$preference->back_urls);
 
     ?>
 
