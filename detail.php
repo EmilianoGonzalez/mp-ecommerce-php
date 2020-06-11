@@ -8,6 +8,16 @@
     <meta name="format-detection" content="telephone=no">
 
     <?php
+
+        function console_log($output, $with_script_tags = true) {
+            $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+        ');';
+            if ($with_script_tags) {
+                $js_code = '<script>' . $js_code . '</script>';
+            }
+            echo $js_code;
+        }
+
         // SDK de Mercado Pago
         require __DIR__ .  '/vendor/autoload.php';
 
@@ -58,7 +68,9 @@
         $item->quantity = $_POST['unit'];
         $item->unit_price = $_POST['price'];
         $item->img = "https://emilianogonzalezmp-commerce-ph.herokuapp.com/".$_POST['img'];
-        console.log("IMG del producto: ".$_POST['img']);
+        
+        console_log("IMG del producto: ".$_POST['img']);
+        
         $item->currency_id = "ARS";
 
         $preference->items = array($item);
