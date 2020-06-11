@@ -81,7 +81,7 @@
                                             Status: <?php echo $_GET['collection_status'] ?><br>
                                             External reference: <?php echo $_GET['external_reference'] ?><br>
                                             Preference ID : <?php echo $_GET['preference_id'] ?><br>
-                                            Payment ID : <?php echo $_GET['payment_id'] ?><br>
+                                            Payment ID : <?php echo $_GET['collection_id'] ?><br>
                                             Site ID : <?php echo $_GET['site_id'] ?><br>
                                             Payment_type: <?php echo $_GET['payment_type'] ?><br>
                                         </h2>
