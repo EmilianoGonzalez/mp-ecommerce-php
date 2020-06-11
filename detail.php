@@ -64,14 +64,15 @@
 
         // Crea un ítem en la preferencia
         $item = new MercadoPago\Item();
+        $item->id = $_POST['id'];
         $item->title = $_POST['title'];
+        $item->description = "Dispositivo móvil de Tienda e-commerce";
         $item->quantity = $_POST['unit'];
         $item->unit_price = $_POST['price'];
-        $item->img = "https://emilianogonzalezmp-commerce-ph.herokuapp.com/assets/".str_replace("./assets/","",$_POST['img']);
-        
-        console_log("IMG del producto: ".$item->img);
-
+        $item->picture_url = "https://emilianogonzalezmp-commerce-ph.herokuapp.com/assets/".str_replace("./assets/","",$_POST['img']);
         $item->currency_id = "ARS";
+
+        console_log("IMG del producto: ".$item->img);
 
         $preference->items = array($item);
         $preference->payer = $payer;
@@ -206,7 +207,7 @@
                                     <form action="/procesar-pago" method="POST">
                                         <script
                                         src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                                        data-preference-id="<?php echo $preference->id; ?>">
+                                        data-preference-id="<?php echo $preference->id; ?>" data-button-label="Pagar la compra">
                                         </script>
                                     </form>                                    
                                 </div>

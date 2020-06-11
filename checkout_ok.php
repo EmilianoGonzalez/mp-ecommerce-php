@@ -77,7 +77,12 @@
 
                                     <button class="as-filter-button" aria-expanded="true" aria-controls="as-search-filters" type="button">
                                         <h2 class=" as-filter-button-text">
-                                            Gracias por su compra
+                                            Gracias por su compra<br>
+                                            External reference: <?php echo $_POST['external_reference'] ?><br>
+                                            Preference ID : <?php echo $_POST['preference_id'] ?><br>
+                                            Payment ID : <?php echo $_POST['payment_id'] ?><br>
+                                            Site ID : <?php echo $_POST['site_id'] ?><br>
+                                            
                                         </h2>
                                     </button>
 
