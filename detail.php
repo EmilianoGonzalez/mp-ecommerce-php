@@ -72,7 +72,7 @@
 
         // Crea un ítem en la preferencia
         $item = new MercadoPago\Item();
-        $item->id = $_POST['id'];
+        $item->id = 1234;
         $item->title = $_POST['title'];
         $item->description = "Dispositivo móvil de Tienda e-commerce";
         $item->quantity = $_POST['unit'];
