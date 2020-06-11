@@ -32,7 +32,6 @@
 
         $preference->external_reference = "info@siguefit.com";
         $preference->notification_url = "https://api.siguefit.com/mptest";
-        $preference->auto_return = "https://api.siguefit.com/mptest";
         $preference->back_urls = array(
             "success" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_ok.php",
             "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure.php",
