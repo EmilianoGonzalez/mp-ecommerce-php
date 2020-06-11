@@ -37,7 +37,16 @@
             "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure.php",
             "pending" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_pending.php"
         );
-        $preference->auto_return = "approved";            
+        $preference->auto_return = "approved";  
+        $preference->payment_methods = array(
+            "excluded_payment_methods" => array(
+              array("id" => "amex")
+            ),
+            "excluded_payment_types" => array(
+              array("id" => "atm")
+            ),
+            "installments" => 6x
+          );
 
         $payer = new MercadoPago\Payer();
         $payer->name = "Lalo";
@@ -73,6 +82,8 @@
 
         console_log("IMG del producto: ".$item->picture_url);
 
+
+
         $preference->items = array($item);
         $preference->payer = $payer;
 
@@ -84,6 +95,8 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
+
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
 
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
