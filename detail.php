@@ -57,7 +57,7 @@
         $item->title = $_POST['title'];
         $item->quantity = $_POST['unit'];
         $item->unit_price = $_POST['price'];
-        $item->img = $_POST['img'];
+        $item->img = "https://emilianogonzalezmp-commerce-ph.herokuapp.com/".$_POST['img'];
         $item->currency_id = "ARS";
 
         $preference->items = array($item);
