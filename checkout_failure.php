@@ -7,99 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
 
-    <?php
-
-        function console_log($output, $with_script_tags = true) {
-            $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-        ');';
-            if ($with_script_tags) {
-                $js_code = '<script>' . $js_code . '</script>';
-            }
-            echo $js_code;
-        }
-
-        // SDK de Mercado Pago
-        require __DIR__ .  '/vendor/autoload.php';
-
-        require __DIR__ .  '/vendor/autoload.php';
-
-        // Agrega credenciales
-        MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
-
-        MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
-
-        $preference = new MercadoPago\Preference();
-
-        $preference->external_reference = "info@siguefit.com";
-        $preference->notification_url = "https://api.siguefit.com/mptest";
-        $preference->back_urls = array(
-            "success" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_ok.php",
-            "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure.php",
-            "pending" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_pending.php"
-        );
-        $preference->auto_return = "approved";  
-        $preference->payment_methods = array(
-            "excluded_payment_methods" => array(
-              array("id" => "amex")
-            ),
-            "excluded_payment_types" => array(
-              array("id" => "atm")
-            ),
-            "installments" => 6
-          );
-
-        $payer = new MercadoPago\Payer();
-        $payer->name = "Lalo";
-        $payer->surname = "Landa";
-        $payer->email = "test_user_63274575@testuser.com";
-        $payer->phone = array(
-          "area_code" => "11",
-          "number" => "22223333"
-        );
-
-        /*
-        $payer->identification = array(
-          "type" => "DNI",
-          "number" => "12345678"
-        );
-        */
-
-        $payer->address = array(
-          "street_name" => false,
-          "street_number" => 123,
-          "zip_code" => "1111"
-        );
-
-        // Crea un ítem en la preferencia
-        $item = new MercadoPago\Item();
-        $item->id = $_POST['id'];
-        $item->title = $_POST['title'];
-        $item->description = "Dispositivo móvil de Tienda e-commerce";
-        $item->quantity = $_POST['unit'];
-        $item->unit_price = $_POST['price'];
-        $item->picture_url = "https://emilianogonzalezmp-commerce-ph.herokuapp.com/assets/".str_replace("./assets/","",$_POST['img']);
-        $item->currency_id = "ARS";
-
-        //console_log("IMG del producto: ".$item->picture_url);
-
-        $preference->items = array($item);
-        $preference->payer = $payer;
-        
-        //console_log("Back url: ".implode( ", ", $preference->back_urls ));
-
-        $preference->save();
-
-        console_log("Preference id: ".$preference->id);
-        //console_log("Back url despues del save: ".implode( ", ", $preference->back_urls ));
-
-    ?>
-
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-
-    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
 
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
@@ -166,7 +77,13 @@
 
                                     <button class="as-filter-button" aria-expanded="true" aria-controls="as-search-filters" type="button">
                                         <h2 class=" as-filter-button-text">
-                                            Smartphones
+                                            Hubo un problema con el cobro del pago, intentelo nuevamente o comuniquese con nuestro servicio de atención al cliente. Gracias<br>
+                                            Status: <?php echo $_GET['collection_status'] ?><br>
+                                            External reference: <?php echo $_GET['external_reference'] ?><br>
+                                            Preference ID : <?php echo $_GET['preference_id'] ?><br>
+                                            Payment ID : <?php echo $_GET['collection_id'] ?><br>
+                                            Site ID : <?php echo $_GET['site_id'] ?><br>
+                                            Payment_type: <?php echo $_GET['payment_type'] ?><br>
                                         </h2>
                                     </button>
 
@@ -201,27 +118,6 @@
 
                                     </div>
 
-                                </div>
-                                <div class="as-producttile-info" style="float:left;min-height: 168px;">
-                                    <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
-                                        <div class="as-producttile-title">
-                                            <h3 class="as-producttile-name">
-                                                <p class="as-producttile-tilelink">
-                                                    <span data-ase-truncate="2"><?php echo $_POST['title'] ?></span>
-                                                </p>
-
-                                            </h3>
-                                        </div>
-                                        <h3 >
-                                            <?php echo "$".$_POST['price'] ?>
-                                        </h3>
-                                        <h3 >
-                                            <?php echo $_POST['unit'] ?>
-                                        </h3>
-                                    </div>
-                                    <a href="<?php echo $preference->init_point; ?>">
-                                        <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
-                                    </a>
                                 </div>
                             </div>
                         </div>
