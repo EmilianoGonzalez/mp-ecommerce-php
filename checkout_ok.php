@@ -7,66 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
 
-    <?php
-        // SDK de Mercado Pago
-        require __DIR__ .  '/vendor/autoload.php';
-
-        require __DIR__ .  '/vendor/autoload.php';
-
-        // Agrega credenciales
-        MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
-
-        MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
-
-        $preference = new MercadoPago\Preference();
-
-        $preference->$external_reference = "info@siguefit.com";
-        $preference->$notification_url = "https://api.siguefit.com/mptest";
-
-        $preference->back_urls = array(
-            "success" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_ok.php",
-            "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure.php",
-            "pending" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_pending.php"
-        );
-        $preference->auto_return = "approved";            
-
-        $payer = new MercadoPago\Payer();
-        $payer->name = "Lalo";
-        $payer->surname = "Landa";
-        $payer->email = "test_user_63274575@testuser.com";
-        $payer->phone = array(
-          "area_code" => "11",
-          "number" => "22223333"
-        );
-
-        /*
-        $payer->identification = array(
-          "type" => "DNI",
-          "number" => "12345678"
-        );
-        */
-
-        $payer->address = array(
-          "street_name" => false,
-          "street_number" => 123,
-          "zip_code" => "1111"
-        );
-
-        // Crea un ítem en la preferencia
-        $item = new MercadoPago\Item();
-        $item->title = $_POST['title'];
-        $item->quantity = $_POST['unit'];
-        $item->unit_price = $_POST['price'];
-        $item->img = $_POST['img'];
-        $item->currency_id = "ARS";
-
-        $preference->items = array($item);
-        $preference->payer = $payer;
-
-        $preference->save();
-
-    ?>
-
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -137,7 +77,7 @@
 
                                     <button class="as-filter-button" aria-expanded="true" aria-controls="as-search-filters" type="button">
                                         <h2 class=" as-filter-button-text">
-                                            Smartphones
+                                            Gracias por su compra
                                         </h2>
                                     </button>
 
@@ -172,30 +112,6 @@
 
                                     </div>
 
-                                </div>
-                                <div class="as-producttile-info" style="float:left;min-height: 168px;">
-                                    <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
-                                        <div class="as-producttile-title">
-                                            <h3 class="as-producttile-name">
-                                                <p class="as-producttile-tilelink">
-                                                    <span data-ase-truncate="2"><?php echo $_POST['title'] ?></span>
-                                                </p>
-
-                                            </h3>
-                                        </div>
-                                        <h3 >
-                                            <?php echo "$".$_POST['price'] ?>
-                                        </h3>
-                                        <h3 >
-                                            <?php echo $_POST['unit'] ?>
-                                        </h3>
-                                    </div>
-                                    <form action="/procesar-pago" method="POST">
-                                        <script
-                                        src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                                        data-preference-id="<?php echo $preference->id; ?>">
-                                        </script>
-                                    </form>                                    
                                 </div>
                             </div>
                         </div>
