@@ -72,7 +72,7 @@
         $item->picture_url = "https://emilianogonzalezmp-commerce-ph.herokuapp.com/assets/".str_replace("./assets/","",$_POST['img']);
         $item->currency_id = "ARS";
 
-        console_log("IMG del producto: ".$item->img);
+        console_log("IMG del producto: ".$item->picture_url);
 
         $preference->items = array($item);
         $preference->payer = $payer;
