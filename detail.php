@@ -33,11 +33,11 @@
         $preference->external_reference = "info@siguefit.com";
         $preference->notification_url = "https://api.siguefit.com/mptest";
         $preference->back_urls = array(
-            "success" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_ok.php",
-            "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure.php",
-            "pending" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_pending.php"
+            "success" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_ok",
+            "failure" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_failure",
+            "pending" => "https://emilianogonzalezmp-commerce-ph.herokuapp.com/checkout_pending"
         );
-        $preference->auto_return = "all";  
+        $preference->auto_return = "approved";  
         $preference->payment_methods = array(
             "excluded_payment_methods" => array(
               array("id" => "amex")
