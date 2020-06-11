@@ -45,7 +45,7 @@
             "excluded_payment_types" => array(
               array("id" => "atm")
             ),
-            "installments" => 6x
+            "installments" => 6
           );
 
         $payer = new MercadoPago\Payer();
